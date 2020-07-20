@@ -1,9 +1,9 @@
 const token = process.argv[3];
 const handler = require("./handler");
-const tracks = require("./tracks");
 const csv = require("./csv-writer");
 const filterer = require("./filterer");
-const playlistParser = require("./playlist-parser");
+const playlistParser = require("./playlist-parser")();
+const tracks = require("./tracks");
 
 const apiParser = require('async-parser');
 
@@ -15,8 +15,6 @@ const resultsCallback = (response) => {
 	csv(finded, "./output/added.csv")
 	csv(notfinded, "./output/notadded.csv")
 }
-
-playlistParser();
 
 apiParser({
 	writeToFile: true,
